@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 10:28:12 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/05 16:59:11 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-static void	set_player_dir_vector(t_game *g, char c)
+void	set_player_dir_vector(t_game *g, char c)
 {
 	if (c == 'N')
 	{
@@ -36,7 +36,7 @@ static void	set_player_dir_vector(t_game *g, char c)
 	}
 }
 
-static int	process_id(t_game *g, char *line, int *count)
+int	process_id(t_game *g, char *line, int *count)
 {
 	int	ret;
 
@@ -89,6 +89,7 @@ static int	read_map_lines(t_game *g, int fd)
 	g->map.cols = 0;
 	map_started = 0;
 	id_count = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (!is_empty(line) && !process_map_line(g, line, &i, &map_started))

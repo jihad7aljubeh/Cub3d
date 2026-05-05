@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 15:57:08 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 10:34:26 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/05 19:20:50 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,16 @@ int				store_map_row(t_game *g, char *line, int *i);
 int				process_map_line(t_game *g,
 					char *line, int *i, int *map_started);
 int				process_id(t_game *g, char *line, int *count);
+int				is_empty(char *s);
+int				has_cub_extension(char *filename);
+int				is_identifier_line(char *s);
+int				is_map_line(char *s);
+void			mark_outside_space(char **grid, t_map *map, int r, int c);
+void			flood_fill(char **grid, t_map *map, int x, int y);
 int				parse_map(t_game *game, char *av);
 void			set_player_plane(t_game *g, char c);
 void			set_player_dir(t_game *g, char c);
+void			set_player_dir_vector(t_game *g, char c);
 
 /***********************************/
 /*************VALIDATION UTILS*****/
@@ -163,10 +170,16 @@ void			cleanup(t_game *game);
 int				render_frame(t_game *game);
 void			init_game(t_game *game);
 
+
 /***********************************/
 /*************ENGINE***************/
 /***********************************/
+void			load_textures(t_game *game);
 void			raycaster(t_game *game);
+void			init_ray(t_game *game, t_ray *ray, int x);
+void			calc_step(t_game *game, t_ray *ray);
+void			dda(t_game *game, t_ray *ray);
+t_tex			*get_wall_texture(t_game *game, t_ray *ray);
 void			ft_pixel_put(t_game *game, int x, int y, int color);
 int				get_tex_color(t_tex *tex, int x, int y);
 
