@@ -1,0 +1,11 @@
+NO ./tester_maps/textures/no.xpm
+SO ./tester_maps/textures/so.xpm
+WE ./tester_maps/textures/we.xpm
+EA ./tester_maps/textures/ea.xpm
+F   255 ,  100  , 50
+C 0,0,0
+
+11111
+100W1
+10001
+11111

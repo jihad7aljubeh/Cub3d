@@ -1,0 +1,11 @@
+C 225,30,0
+F 220,100,0
+EA ./tester_maps/textures/ea.xpm
+WE ./tester_maps/textures/we.xpm
+SO ./tester_maps/textures/so.xpm
+NO ./tester_maps/textures/no.xpm
+
+11111
+100E1
+10001
+11111

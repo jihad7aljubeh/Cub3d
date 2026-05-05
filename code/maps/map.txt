@@ -1,0 +1,21 @@
+EA ./code/textures/bookshelf_03.xpm
+
+F 255,0,0
+C 171,154,137
+
+NO ./code/textures/bookshelf.xpm
+SO ./code/textures/bookshelf_00.xpm
+WE ./code/textures/bookshelf_02.xpm
+                      
+11111
+10001
+10001
+10001
+1E001
+11111
+
+
+
+
+
+                  
