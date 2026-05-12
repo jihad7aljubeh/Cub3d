@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:03:22 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/08 19:51:56 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/05 09:06:24 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int	main(int argc, char **argv)
 		error_exit("Usage: ./cub3D map.cub");
 	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game);
-	if (!parse_map(&game, argv[1]))
+	if (!parse_file(&game, argv[1]))
 		error_exit("Parsing failed");
-	load_textures(&game);
 	setup_hooks(&game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_loop(game.mlx);

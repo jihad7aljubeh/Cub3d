@@ -32,14 +32,6 @@ void	load_single_texture(t_game *game, t_tex *tex, char *path)
 			&tex->endian);
 }
 
-void	load_textures(t_game *game)
-{
-	load_single_texture(game, &game->tex.north, game->no_path);
-	load_single_texture(game, &game->tex.south, game->so_path);
-	load_single_texture(game, &game->tex.east, game->ea_path);
-	load_single_texture(game, &game->tex.west, game->we_path);
-}
-
 void	mock_load_textures(t_game *game)
 {
 	load_single_texture(game, &game->tex.north, "textures/north.xpm");

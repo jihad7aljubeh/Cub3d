@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 10:29:52 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/08 20:39:40 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	is_map_line(char *s)
 		i++;
 	return (ft_strchr("10NSEW", s[i]) != NULL);
 }
+
 void	set_player_dir(t_game *g, char c)
 {
 	set_player_dir_vector(g, c);
