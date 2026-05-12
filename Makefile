@@ -11,13 +11,16 @@ OBJS_DIR = code/objs
 
 SRCS    = code/src/main.c \
           code/src/init/init.c \
-          code/src/parsing/parse_files.c \
+		  code/src/init/mock_data.c \
           code/src/parsing/parse_map.c \
-          code/src/parsing/parse_textures.c \
           code/src/parsing/validate_map.c \
           code/src/parsing/val_utils.c \
+		  code/src/parsing/val_utils2.c \
 		  code/src/parsing/parse_color.c \
+		  code/src/parsing/parse_map_utils.c \
+		  code/src/parsing/parse_map_helpers.c \
           code/src/engine/raycaster.c \
+		  code/src/engine/raycaster2.c \
           code/src/engine/render.c \
           code/src/engine/textures.c \
           code/src/player/movement.c \

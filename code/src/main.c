@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:03:22 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 09:06:24 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 02:57:18 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 	ft_memset(&game, 0, sizeof(t_game));
 	init_game(&game);
 	if (!parse_file(&game, argv[1]))
-		error_exit("Parsing failed");
+		error_exit("parse error");
+	load_textures(&game);
 	setup_hooks(&game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_loop(game.mlx);

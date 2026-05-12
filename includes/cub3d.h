@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 15:57:08 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 10:34:26 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 02:50:48 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/stat.h>
 # include <unistd.h>
 
 typedef struct s_map
@@ -130,7 +131,11 @@ typedef struct s_game
 /***********************************/
 int				parse_file(t_game *game, char *av);
 int				parse_map(t_game *game, char *av);
-
+int				is_empty(char *s);
+int				has_cub_extension(char *filename);
+int				is_identifier_line(char *s);
+int				is_map_line(char *s);
+void			set_player_dir_vector(t_game *g, char c);
 int				validate_map(t_game *game);
 int				player_position(t_game *game, int *x, int *y);
 int				check_flood(char **grid, int rows, int cols);
@@ -141,7 +146,11 @@ int				store_map_row(t_game *g, char *line, int *i);
 int				process_map_line(t_game *g,
 					char *line, int *i, int *map_started);
 int				process_id(t_game *g, char *line, int *count);
-int				parse_map(t_game *game, char *av);
+int				is_empty(char *s);
+int				has_cub_extension(char *filename);
+int				is_identifier_line(char *s);
+int				is_map_line(char *s);
+int				validate_texture_path(char *path);
 void			set_player_plane(t_game *g, char c);
 void			set_player_dir(t_game *g, char c);
 
@@ -151,6 +160,8 @@ void			set_player_dir(t_game *g, char c);
 void			free_grid(char **grid, int rows);
 char			**pad_grid(t_game *game);
 char			**dup_grid(t_game *game);
+void			mark_outside_space(char **grid, t_map *map, int r, int c);
+void			flood_fill(char **grid, t_map *map, int x, int y);
 int				check_space_flow(t_game *game);
 int				player_position(t_game *game, int *x, int *y);
 int				check_flood(char **grid, int rows, int cols);
@@ -166,10 +177,16 @@ void			init_game(t_game *game);
 /***********************************/
 /*************ENGINE***************/
 /***********************************/
+void			init_ray(t_game *game, t_ray *ray, int x);
+void			calc_step(t_game *game, t_ray *ray);
+void			dda(t_game *game, t_ray *ray);
+t_tex			*get_wall_texture(t_game *game, t_ray *ray);
 void			raycaster(t_game *game);
 void			ft_pixel_put(t_game *game, int x, int y, int color);
 int				get_tex_color(t_tex *tex, int x, int y);
-
+void			load_single_texture(t_game *game, t_tex *tex, char *path);
+void			mock_load_textures(t_game *game);
+void			load_textures(t_game *game);
 /***********************************/
 /*************PLAYER***************/
 /***********************************/

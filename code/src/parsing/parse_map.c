@@ -6,13 +6,13 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 10:28:12 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 02:20:46 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-static void	set_player_dir_vector(t_game *g, char c)
+void	set_player_dir_vector(t_game *g, char c)
 {
 	if (c == 'N')
 	{
@@ -34,21 +34,6 @@ static void	set_player_dir_vector(t_game *g, char c)
 		g->player.dir_x = -1;
 		g->player.dir_y = 0;
 	}
-}
-
-static int	process_id(t_game *g, char *line, int *count)
-{
-	int	ret;
-
-	ret = process_texture(g, line, count);
-	if (ret)
-		return (ret);
-	ret = process_color(g, line, count);
-	if (ret)
-		return (ret);
-	if (ft_strchr(line, ' ') && ft_isalpha(line[0]))
-		return (-1);
-	return (0);
 }
 
 static int	init_player_from_map(t_game *g)
@@ -89,6 +74,7 @@ static int	read_map_lines(t_game *g, int fd)
 	g->map.cols = 0;
 	map_started = 0;
 	id_count = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (!is_empty(line) && !process_map_line(g, line, &i, &map_started))
@@ -127,4 +113,21 @@ int	parse_map(t_game *game, char *av)
 	if (game->floor_color == -1 || game->ceil_color == -1)
 		return (0);
 	return (init_player_from_map(game));
+}
+
+int	parse_file(t_game *game, char *av)
+{
+	if (!parse_map(game, av))
+		return (0);
+	if (!validate_texture_path(game->no_path))
+		return (fprintf(stderr, "Error\n"), 0);
+	if (!validate_texture_path(game->so_path))
+		return (fprintf(stderr, "Error\n"), 0);
+	if (!validate_texture_path(game->ea_path))
+		return (fprintf(stderr, "Error\n"), 0);
+	if (!validate_texture_path(game->we_path))
+		return (fprintf(stderr, "Error\n"), 0);
+	if (!validate_map(game))
+		return (0);
+	return (1);
 }

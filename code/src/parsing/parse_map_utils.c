@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/08 20:39:13 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 02:42:15 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	process_texture(t_game *g, char *line, int *count)
 {
 	if (!ft_strncmp(line, "NO ", 3) && !g->no_path)
-		return (g->no_path = ft_strtrim(line + 2, " \t\n"), (*count)++, 1);
+		return (g->no_path = ft_strtrim(line + 2, " \t\n\r"), (*count)++, 1);
 	if (!ft_strncmp(line, "SO ", 3) && !g->so_path)
-		return (g->so_path = ft_strtrim(line + 2, " \t\n"), (*count)++, 1);
+		return (g->so_path = ft_strtrim(line + 2, " \t\n\r"), (*count)++, 1);
 	if (!ft_strncmp(line, "EA ", 3) && !g->ea_path)
-		return (g->ea_path = ft_strtrim(line + 2, " \t\n"), (*count)++, 1);
+		return (g->ea_path = ft_strtrim(line + 2, " \t\n\r"), (*count)++, 1);
 	if (!ft_strncmp(line, "WE ", 3) && !g->we_path)
-		return (g->we_path = ft_strtrim(line + 2, " \t\n"), (*count)++, 1);
+		return (g->we_path = ft_strtrim(line + 2, " \t\n\r"), (*count)++, 1);
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 04:49:35 by jehad             #+#    #+#             */
-/*   Updated: 2026/05/03 06:00:12 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 02:20:52 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,36 @@ int	check_space_flow(t_game *game)
 		r++;
 	}
 	return (1);
+}
+
+int	validate_texture_path(char *path)
+{
+	struct stat	buf;
+	int			len;
+
+	if (!path || path[0] == '\0')
+		return (0);
+	if (stat(path, &buf) < 0)
+		return (0);
+	if (S_ISDIR(buf.st_mode))
+		return (0);
+	len = ft_strlen(path);
+	if (len <= 4 || ft_strcmp(path + len - 4, ".xpm") != 0)
+		return (0);
+	return (1);
+}
+
+int	process_id(t_game *g, char *line, int *count)
+{
+	int	ret;
+
+	ret = process_texture(g, line, count);
+	if (ret)
+		return (ret);
+	ret = process_color(g, line, count);
+	if (ret)
+		return (ret);
+	if (ft_strchr(line, ' ') && ft_isalpha(line[0]))
+		return (-1);
+	return (0);
 }

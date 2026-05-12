@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabusnin <aabusnin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:07:24 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/04/26 17:53:10 by aabusnin         ###   ########.fr       */
+/*   Updated: 2026/05/13 02:55:33 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,23 @@ int	get_tex_color(t_tex *tex, int x, int y)
 
 void	load_single_texture(t_game *game, t_tex *tex, char *path)
 {
+	printf("Attempting to load texture: [%s]\n", path); // DEBUG
 	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
 			&tex->height);
 	if (!tex->img)
 		error_exit("Failed to load XPM texture. Check file path.");
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len,
 			&tex->endian);
+	if (!tex->addr)
+		error_exit("Failed to get texture data address.");
+}
+
+void	load_textures(t_game *game)
+{
+	load_single_texture(game, &game->tex.north, game->no_path);
+	load_single_texture(game, &game->tex.south, game->so_path);
+	load_single_texture(game, &game->tex.east, game->ea_path);
+	load_single_texture(game, &game->tex.west, game->we_path);
 }
 
 void	mock_load_textures(t_game *game)
