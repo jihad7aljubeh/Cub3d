@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:07:24 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 02:55:33 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 03:03:16 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	get_tex_color(t_tex *tex, int x, int y)
 
 void	load_single_texture(t_game *game, t_tex *tex, char *path)
 {
-	printf("Attempting to load texture: [%s]\n", path); // DEBUG
 	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
 			&tex->height);
 	if (!tex->img)

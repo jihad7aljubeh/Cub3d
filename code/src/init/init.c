@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:04:38 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 02:57:00 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 03:03:34 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_exit("Failed to initialize MLX");
-	//load_textures(game);
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!game->win)
 		error_exit("Failed to create window");

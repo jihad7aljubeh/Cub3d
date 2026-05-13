@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 02:23:56 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 03:02:00 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int	is_empty(char *s)
 	return (s[i] == '\0');
 }
 
-int	print_error(const char *msg)
-{
-	fprintf(stderr, "%s\n", msg);
-	return (0);
-}
-
 int	has_cub_extension(char *filename)
 {
 	int		len;
@@ -37,16 +31,16 @@ int	has_cub_extension(char *filename)
 		return (0);
 	len = ft_strlen(filename);
 	if (len <= 4)
-		return (print_error("Error\n"));
+		return (0);
 	if (ft_strcmp(filename + len - 4, ".cub") != 0)
-		return (print_error("Error\n"));
+		return (0);
 	base = ft_strrchr(filename, '/');
 	if (!base)
 		base = filename;
 	else
 		base++;
 	if (base[0] == '.' || base[0] == '\0')
-		return (print_error("Error\n"));
+		return (0);
 	return (1);
 }
 
