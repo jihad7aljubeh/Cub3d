@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 04:49:35 by jehad             #+#    #+#             */
-/*   Updated: 2026/05/03 06:00:12 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:56:03 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int	player_position(t_game *game, int *x, int *y)
 		while (game->map.grid[i][j])
 		{
 			if (ft_strchr("NSEW", game->map.grid[i][j]))
-				return (*x = j, *y = i, 1);
+			{
+				*x = j;
+				*y = i;
+				return (1);
+			}
 			j++;
 		}
 		i++;

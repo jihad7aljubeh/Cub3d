@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 02:20:46 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:24:34 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ static int	read_map_lines(t_game *g, int fd)
 	while (line != NULL)
 	{
 		if (!is_empty(line) && !process_map_line(g, line, &i, &map_started))
-			return (free(line), 0);
+			return (free_fire(line));
 		if (!is_empty(line) && !map_started
 			&& process_id(g, line, &id_count) == -1)
-			return (free(line), 0);
+			return (free_fire(line));
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -103,9 +103,9 @@ int	parse_map(t_game *game, char *av)
 		return (0);
 	game->map.grid = malloc(sizeof(char *) * 4096);
 	if (!game->map.grid)
-		return (close(fd), 0);
+		return (close_free_map(game, fd, 0));
 	if (!read_map_lines(game, fd))
-		return (close(fd), 0);
+		return (close_free_map(game, fd, 1));
 	close(fd);
 	if (game->map.rows == 0 || !game->no_path || !game->so_path
 		|| !game->ea_path || !game->we_path)
@@ -119,15 +119,9 @@ int	parse_file(t_game *game, char *av)
 {
 	if (!parse_map(game, av))
 		return (0);
-	if (!validate_texture_path(game->no_path))
-		return (fprintf(stderr, "Error\n"), 0);
-	if (!validate_texture_path(game->so_path))
-		return (fprintf(stderr, "Error\n"), 0);
-	if (!validate_texture_path(game->ea_path))
-		return (fprintf(stderr, "Error\n"), 0);
-	if (!validate_texture_path(game->we_path))
-		return (fprintf(stderr, "Error\n"), 0);
 	if (!validate_map(game))
+		return (0);
+	if (!finalize_map(game))
 		return (0);
 	return (1);
 }

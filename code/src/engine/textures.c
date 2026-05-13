@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:07:24 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 03:03:16 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:16:01 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,4 @@ void	load_textures(t_game *game)
 	load_single_texture(game, &game->tex.south, game->so_path);
 	load_single_texture(game, &game->tex.east, game->ea_path);
 	load_single_texture(game, &game->tex.west, game->we_path);
-}
-
-void	mock_load_textures(t_game *game)
-{
-	load_single_texture(game, &game->tex.north, "textures/north.xpm");
-	load_single_texture(game, &game->tex.south, "textures/south.xpm");
-	load_single_texture(game, &game->tex.east, "textures/east.xpm");
-	load_single_texture(game, &game->tex.west, "textures/west.xpm");
 }

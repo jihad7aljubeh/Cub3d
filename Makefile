@@ -25,7 +25,8 @@ SRCS    = code/src/main.c \
           code/src/engine/textures.c \
           code/src/player/movement.c \
           code/src/player/hooks.c \
-          code/src/cleanup/cleanup.c
+          code/src/cleanup/cleanup.c \
+		  code/src/parsing/free_utils.c
 
 OBJS    = $(SRCS:%.c=$(OBJS_DIR)/%.o)
 

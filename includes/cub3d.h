@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 15:57:08 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 02:50:48 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:28:06 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,15 +150,21 @@ int				is_empty(char *s);
 int				has_cub_extension(char *filename);
 int				is_identifier_line(char *s);
 int				is_map_line(char *s);
-int				validate_texture_path(char *path);
 void			set_player_plane(t_game *g, char c);
 void			set_player_dir(t_game *g, char c);
+int				free_split_retunn(char **arr);
+int				increaser(int *count);
+int				close_free_map(t_game *g, int fd, int flag);
+int				free_fire(char *line);
+int				free_helper(t_game *game, char **grid);
+void			free_split(char **arr);
 
 /***********************************/
 /*************VALIDATION UTILS*****/
 /***********************************/
 void			free_grid(char **grid, int rows);
 char			**pad_grid(t_game *game);
+int				finalize_map(t_game *game);
 char			**dup_grid(t_game *game);
 void			mark_outside_space(char **grid, t_map *map, int r, int c);
 void			flood_fill(char **grid, t_map *map, int x, int y);

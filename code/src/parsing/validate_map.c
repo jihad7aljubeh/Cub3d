@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:06:42 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/03 06:24:01 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:55:35 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_map_closure(char **grid, t_game *game)
 {
 	int	r;
 	int	c;
-
+//here is zena
 	r = -1;
 	while (++r < game->map.rows)
 	{
@@ -55,8 +55,8 @@ static int	check_map_closure(char **grid, t_game *game)
 			if (ft_strchr("0NSEW", grid[r][c])
 				&& ((r == 0 || r == game->map.rows - 1
 					|| c == 0 || c == game->map.cols - 1)
-				|| (grid[r - 1][c] == 'X' || grid[r + 1][c] == 'X'
-					|| grid[r][c - 1] == 'X' || grid[r][c + 1] == 'X')))
+				|| (grid[r - 1][c] == ' ' || grid[r + 1][c] == ' '
+					|| grid[r][c - 1] == ' ' || grid[r][c + 1] == ' ')))
 				return (0);
 		}
 	}
@@ -73,7 +73,7 @@ static int	check_map2(t_game *game)
 	if (!grid)
 		return (0);
 	if (!check_map_closure(grid, game))
-		return (free_grid(grid, game->map.rows), 0);
+		return (free_helper(game, grid));
 	free_grid(grid, game->map.rows);
 	return (1);
 }
@@ -89,7 +89,7 @@ static int	check_map3(t_game *game)
 	if (!grid)
 		return (0);
 	if (!player_position(game, &x, &y))
-		return (free_grid(grid, game->map.rows), 0);
+		return (free_helper(game, grid));
 	flood_fill(grid, &game->map, x, y);
 	ok = check_flood(grid, game->map.rows, game->map.cols);
 	free_grid(grid, game->map.rows);

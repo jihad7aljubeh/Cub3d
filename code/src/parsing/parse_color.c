@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 18:17:52 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/02 15:19:10 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:27:56 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-static void	free_split(char **arr)
+void	free_split(char **arr)
 {
 	int	i;
 
@@ -109,9 +109,9 @@ int	parse_color(char *line)
 		return (-1);
 	rgb = ft_split(line, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		return (free_split(rgb), -1);
+		return (free_split_retunn(rgb));
 	if (!parse_rgb(rgb, &r, &g, &b))
-		return (free_split(rgb), -1);
+		return (free_split_retunn(rgb));
 	free_split(rgb);
 	return ((r << 16) | (g << 8) | b);
 }

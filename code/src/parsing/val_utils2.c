@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 04:49:35 by jehad             #+#    #+#             */
-/*   Updated: 2026/05/13 02:20:52 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:55:35 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	mark_outside_space(char **grid, t_map *map, int r, int c)
 	if (r < 0 || r >= map->rows || c < 0 || c >= map->cols
 		|| grid[r][c] != ' ')
 		return ;
-	grid[r][c] = 'X';
+	grid[r][c] = ' ';
 	mark_outside_space(grid, map, r + 1, c);
 	mark_outside_space(grid, map, r - 1, c);
 	mark_outside_space(grid, map, r, c + 1);
@@ -66,23 +66,6 @@ int	check_space_flow(t_game *game)
 		}
 		r++;
 	}
-	return (1);
-}
-
-int	validate_texture_path(char *path)
-{
-	struct stat	buf;
-	int			len;
-
-	if (!path || path[0] == '\0')
-		return (0);
-	if (stat(path, &buf) < 0)
-		return (0);
-	if (S_ISDIR(buf.st_mode))
-		return (0);
-	len = ft_strlen(path);
-	if (len <= 4 || ft_strcmp(path + len - 4, ".xpm") != 0)
-		return (0);
 	return (1);
 }
 
