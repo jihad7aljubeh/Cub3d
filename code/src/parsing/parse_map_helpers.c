@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_helpers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/16 12:05:44 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/16 19:25:01 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	is_empty(char *s)
 	i = 0;
 	while (s[i] == ' ' || s[i] == '\t')
 		i++;
-	return (s[i] == '\0');
+	if (s[i] == '\0')
+		return (1);
+	return (0);
 }
 
 int	has_cub_extension(char *filename)
@@ -64,7 +66,7 @@ int	is_identifier_line(char *s)
 int	is_map_line(char *s)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (s[i] == ' ' || s[i] == '\t')

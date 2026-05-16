@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 04:49:35 by jehad             #+#    #+#             */
-/*   Updated: 2026/05/16 12:08:09 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/16 19:25:10 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	mark_outside_space(char **grid, t_map *map, int r, int c)
 int	has_xpm_ext(char *path)
 {
 	int	len;
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (!path)

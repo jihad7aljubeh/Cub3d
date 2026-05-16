@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/15 10:45:07 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/16 19:22:05 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ static int	init_player_from_map(t_game *g)
 		}
 		r++;
 	}
-	return (cnt == 1);
+	if (cnt != 1)
+		return (0);
+	return (1);
 }
 
 static int	read_map_lines(t_game *g, int fd, int capacity)

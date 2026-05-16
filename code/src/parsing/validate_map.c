@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:06:42 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/15 10:44:49 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/16 19:23:37 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static int	check_map1(t_game *game)
 				w_cnt++;
 		}
 	}
-	return (p_cnt == 1 && w_cnt > 0);
+	if (p_cnt != 1 || w_cnt == 0)
+		return (0);
+	return (1);
 }
 
 static int	check_map_closure(char **grid, t_game *game)

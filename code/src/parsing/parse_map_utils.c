@@ -6,7 +6,7 @@
 /*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 20:55:35 by jalju-be         ###   ########.fr       */
+/*   Updated: 2026/05/16 19:21:14 by jalju-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	process_color(t_game *g, char *line, int *count)
 		g->floor_color = parse_color(line + 1);
 		if (g->floor_color == -1)
 			return (-1);
-		return ((*count)++, 1);
+		return (increaser(count));
 	}
 	if (!ft_strncmp(line, "C ", 2) && g->ceil_color == -1)
 	{
 		g->ceil_color = parse_color(line + 1);
 		if (g->ceil_color == -1)
 			return (-1);
-		return ((*count)++, 1);
+		return (increaser(count));
 	}
 	if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2))
 		return (-1);
