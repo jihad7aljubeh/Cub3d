@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 04:49:35 by jehad             #+#    #+#             */
-/*   Updated: 2026/05/13 20:55:35 by jalju-be         ###   ########.fr       */
+/*   Updated: 2026/05/16 12:08:09 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**dup_grid(t_game *game)
 	{
 		cpy[i] = ft_strdup(game->map.grid[i]);
 		if (!cpy[i])
-			return (NULL);
+			return (free_grid(cpy, i), NULL);
 		i++;
 	}
 	cpy[i] = NULL;
@@ -42,6 +42,21 @@ void	mark_outside_space(char **grid, t_map *map, int r, int c)
 	mark_outside_space(grid, map, r - 1, c);
 	mark_outside_space(grid, map, r, c + 1);
 	mark_outside_space(grid, map, r, c - 1);
+}
+
+int	has_xpm_ext(char *path)
+{
+	int	len;
+	int ret;
+
+	ret = 0;
+	if (!path)
+		return (0);
+	len = ft_strlen(path);
+	if (len < 4)
+		return (0);
+	ret = ft_strcmp(path + len - 4, ".xpm") == 0;
+	return (ret);
 }
 
 int	check_space_flow(t_game *game)

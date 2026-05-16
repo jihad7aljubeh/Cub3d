@@ -45,16 +45,18 @@ static void	render_background(t_game *game)
 	}
 }
 
-void	draw_vertical_line(t_game *game, int x, t_ray *ray, int color)
+int	ensure_capacity(t_game *g, int *capacity, int i)
 {
-	int	y;
+	char	**tmp;
 
-	y = ray->draw_start;
-	while (y <= ray->draw_end)
-	{
-		ft_pixel_put(game, x, y, color);
-		y++;
-	}
+	if (i < *capacity - 1)
+		return (1);
+	*capacity *= 2;
+	tmp = realloc(g->map.grid, sizeof(char *) * *capacity);
+	if (!tmp)
+		return (0);
+	g->map.grid = tmp;
+	return (1);
 }
 
 int	render_frame(t_game *game)

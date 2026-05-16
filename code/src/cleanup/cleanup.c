@@ -6,11 +6,11 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:08:24 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/05 09:06:43 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/15 11:49:48 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	free_map(t_game *game)
 {
@@ -33,11 +33,13 @@ static void	destroy_tex(t_game *game, t_tex *tex)
 	tex->img = NULL;
 }
 
-void	error_exit(char *msg)
+void	error_exit(t_game *game, char *msg)
 {
-	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
+	if (game)
+		cleanup(game);
 	exit(1);
 }
 

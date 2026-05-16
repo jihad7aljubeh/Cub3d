@@ -12,7 +12,7 @@
 
 #include "../../../includes/cub3d.h"
 
-int	free_split_retunn(char **arr)
+int	free_split_return(char **arr)
 {
 	free_split(arr);
 	return (-1);
@@ -28,7 +28,10 @@ int	close_free_map(t_game *g, int fd, int flag)
 {
 	close(fd);
 	if (flag == 1)
+	{
 		free_grid(g->map.grid, g->map.rows);
+		g->map.grid = NULL;
+	}
 	return (0);
 }
 

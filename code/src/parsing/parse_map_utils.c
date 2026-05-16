@@ -14,25 +14,23 @@
 
 int	process_texture(t_game *g, char *line, int *count)
 {
+	char	**field;
+
+	field = NULL;
 	if (!ft_strncmp(line, "NO ", 3) && !g->no_path)
+		field = &g->no_path;
+	else if (!ft_strncmp(line, "SO ", 3) && !g->so_path)
+		field = &g->so_path;
+	else if (!ft_strncmp(line, "EA ", 3) && !g->ea_path)
+		field = &g->ea_path;
+	else if (!ft_strncmp(line, "WE ", 3) && !g->we_path)
+		field = &g->we_path;
+	if (field)
 	{
-		g->no_path = ft_strtrim(line + 2, " \t\n\r");
-		return (increaser(count));
-	}
-	if (!ft_strncmp(line, "SO ", 3) && !g->so_path)
-	{
-		g->so_path = ft_strtrim(line + 2, " \t\n\r");
-		return (increaser(count));
-	}
-	if (!ft_strncmp(line, "EA ", 3) && !g->ea_path)
-	{
-		g->ea_path = ft_strtrim(line + 2, " \t\n\r");
-		return (increaser(count));
-	}
-	if (!ft_strncmp(line, "WE ", 3) && !g->we_path)
-	{
-		g->we_path = ft_strtrim(line + 2, " \t\n\r");
-		return (increaser(count));
+		*field = ft_strtrim(line + 2, " \t\n\r");
+		if (*field && has_xpm_ext(*field))
+			return (increaser(count));
+		return (-1);
 	}
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "WE ", 3))

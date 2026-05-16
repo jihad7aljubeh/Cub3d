@@ -10,7 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
+
+static int	is_blocked(t_game *g, int y, int x)
+{
+	if (y < 0 || y >= g->map.rows)
+		return (1);
+	if (x < 0 || x >= (int)ft_strlen(g->map.grid[y]))
+		return (1);
+	return (g->map.grid[y][x] == '1' || g->map.grid[y][x] == ' ');
+}
 
 void	move_forward_back(t_game *g, double direction)
 {
@@ -19,9 +28,9 @@ void	move_forward_back(t_game *g, double direction)
 
 	new_x = g->player.x + g->player.dir_x * MOVE_SPEED * direction;
 	new_y = g->player.y + g->player.dir_y * MOVE_SPEED * direction;
-	if (g->map.grid[(int)g->player.y][(int)new_x] != '1')
+	if (!is_blocked(g, (int)g->player.y, (int)new_x))
 		g->player.x = new_x;
-	if (g->map.grid[(int)new_y][(int)g->player.x] != '1')
+	if (!is_blocked(g, (int)new_y, (int)g->player.x))
 		g->player.y = new_y;
 }
 
@@ -32,9 +41,9 @@ void	move_left_right(t_game *g, double direction)
 
 	new_x = g->player.x + g->player.plane_x * MOVE_SPEED * direction;
 	new_y = g->player.y + g->player.plane_y * MOVE_SPEED * direction;
-	if (g->map.grid[(int)g->player.y][(int)new_x] != '1')
+	if (!is_blocked(g, (int)g->player.y, (int)new_x))
 		g->player.x = new_x;
-	if (g->map.grid[(int)new_y][(int)g->player.x] != '1')
+	if (!is_blocked(g, (int)new_y, (int)g->player.x))
 		g->player.y = new_y;
 }
 

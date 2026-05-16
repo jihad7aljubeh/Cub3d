@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 20:24:34 by jalju-be         ###   ########.fr       */
+/*   Updated: 2026/05/15 10:45:07 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	init_player_from_map(t_game *g)
 	return (cnt == 1);
 }
 
-static int	read_map_lines(t_game *g, int fd)
+static int	read_map_lines(t_game *g, int fd, int capacity)
 {
 	char	*line;
 	int		i;
@@ -77,6 +77,8 @@ static int	read_map_lines(t_game *g, int fd)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		if (!is_empty(line) && !ensure_capacity(g, &capacity, i))
+			return (free_fire(line));
 		if (!is_empty(line) && !process_map_line(g, line, &i, &map_started))
 			return (free_fire(line));
 		if (!is_empty(line) && !map_started
@@ -96,15 +98,13 @@ int	parse_map(t_game *game, char *av)
 
 	if (!has_cub_extension(av))
 		return (0);
-	game->floor_color = -1;
-	game->ceil_color = -1;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		return (0);
-	game->map.grid = malloc(sizeof(char *) * 4096);
+	game->map.grid = malloc(sizeof(char *) * 64);
 	if (!game->map.grid)
 		return (close_free_map(game, fd, 0));
-	if (!read_map_lines(game, fd))
+	if (!read_map_lines(game, fd, 64))
 		return (close_free_map(game, fd, 1));
 	close(fd);
 	if (game->map.rows == 0 || !game->no_path || !game->so_path
@@ -120,8 +120,6 @@ int	parse_file(t_game *game, char *av)
 	if (!parse_map(game, av))
 		return (0);
 	if (!validate_map(game))
-		return (0);
-	if (!finalize_map(game))
 		return (0);
 	return (1);
 }

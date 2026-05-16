@@ -16,12 +16,12 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-		error_exit("Usage: ./cub3D map.cub");
 	ft_memset(&game, 0, sizeof(t_game));
+	if (argc != 2)
+		error_exit(&game, "Usage: ./cub3D map.cub");
 	init_game(&game);
 	if (!parse_file(&game, argv[1]))
-		error_exit("parse error");
+		error_exit(&game, "parse error");
 	load_textures(&game);
 	setup_hooks(&game);
 	mlx_loop_hook(game.mlx, render_frame, &game);

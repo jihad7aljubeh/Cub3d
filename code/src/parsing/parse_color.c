@@ -109,9 +109,9 @@ int	parse_color(char *line)
 		return (-1);
 	rgb = ft_split(line, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		return (free_split_retunn(rgb));
+		return (free_split_return(rgb));
 	if (!parse_rgb(rgb, &r, &g, &b))
-		return (free_split_retunn(rgb));
+		return (free_split_return(rgb));
 	free_split(rgb);
 	return ((r << 16) | (g << 8) | b);
 }

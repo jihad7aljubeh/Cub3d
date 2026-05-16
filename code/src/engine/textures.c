@@ -27,11 +27,11 @@ void	load_single_texture(t_game *game, t_tex *tex, char *path)
 	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
 			&tex->height);
 	if (!tex->img)
-		error_exit("Failed to load XPM texture. Check file path.");
+		error_exit(game, "Failed to load XPM texture. Check file path.");
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len,
 			&tex->endian);
 	if (!tex->addr)
-		error_exit("Failed to get texture data address.");
+		error_exit(game, "Failed to get texture data address.");
 }
 
 void	load_textures(t_game *game)

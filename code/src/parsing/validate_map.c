@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalju-be <jalju-be@student.42amman.com>    +#+  +:+       +#+        */
+/*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:06:42 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 20:55:35 by jalju-be         ###   ########.fr       */
+/*   Updated: 2026/05/15 10:44:49 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,16 @@ static int	check_map_closure(char **grid, t_game *game)
 {
 	int	r;
 	int	c;
-//here is zena
+
 	r = -1;
 	while (++r < game->map.rows)
 	{
 		c = -1;
 		while (++c < game->map.cols)
 		{
-			if (grid[r][c] == ' ' && (r == 0 || r == game->map.rows - 1
-					|| c == 0 || c == game->map.cols - 1))
-				mark_outside_space(grid, &game->map, r, c);
 			if (ft_strchr("0NSEW", grid[r][c])
-				&& ((r == 0 || r == game->map.rows - 1
-					|| c == 0 || c == game->map.cols - 1)
-				|| (grid[r - 1][c] == ' ' || grid[r + 1][c] == ' '
-					|| grid[r][c - 1] == ' ' || grid[r][c + 1] == ' ')))
+				&& (r == 0 || r == game->map.rows - 1
+					|| c == 0 || c == game->map.cols - 1))
 				return (0);
 		}
 	}

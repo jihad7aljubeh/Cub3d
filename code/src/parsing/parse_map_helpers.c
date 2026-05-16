@@ -6,7 +6,7 @@
 /*   By: jehad <jehad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 16:05:43 by aabusnin          #+#    #+#             */
-/*   Updated: 2026/05/13 03:02:00 by jehad            ###   ########.fr       */
+/*   Updated: 2026/05/16 12:05:44 by jehad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ int	is_identifier_line(char *s)
 int	is_map_line(char *s)
 {
 	int	i;
+	int j;
 
 	i = 0;
-	while (s[i] == ' ')
+	while (s[i] == ' ' || s[i] == '\t')
 		i++;
-	return (ft_strchr("10NSEW", s[i]) != NULL);
+	j = ft_strchr("10NSEW", s[i]) != NULL;
+	return (j);
 }
 
 void	set_player_dir(t_game *g, char c)

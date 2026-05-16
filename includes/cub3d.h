@@ -13,6 +13,13 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../code/libft/libft.h"
+# include "../code/mlx_linux/mlx.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 800
 
@@ -26,16 +33,6 @@
 
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
-
-# include "../code/libft/libft.h"
-# include "../code/mlx_linux/mlx.h"
-# include <errno.h>
-# include <fcntl.h>
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/stat.h>
-# include <unistd.h>
 
 typedef struct s_map
 {
@@ -141,18 +138,14 @@ int				player_position(t_game *game, int *x, int *y);
 int				check_flood(char **grid, int rows, int cols);
 int				parse_color(char *line);
 int				process_texture(t_game *g, char *line, int *count);
-int				process_color(t_game *g, char *line, int *count);	
+int				process_color(t_game *g, char *line, int *count);
 int				store_map_row(t_game *g, char *line, int *i);
 int				process_map_line(t_game *g,
 					char *line, int *i, int *map_started);
 int				process_id(t_game *g, char *line, int *count);
-int				is_empty(char *s);
-int				has_cub_extension(char *filename);
-int				is_identifier_line(char *s);
-int				is_map_line(char *s);
 void			set_player_plane(t_game *g, char c);
 void			set_player_dir(t_game *g, char c);
-int				free_split_retunn(char **arr);
+int				free_split_return(char **arr);
 int				increaser(int *count);
 int				close_free_map(t_game *g, int fd, int flag);
 int				free_fire(char *line);
@@ -164,20 +157,19 @@ void			free_split(char **arr);
 /***********************************/
 void			free_grid(char **grid, int rows);
 char			**pad_grid(t_game *game);
-int				finalize_map(t_game *game);
 char			**dup_grid(t_game *game);
 void			mark_outside_space(char **grid, t_map *map, int r, int c);
 void			flood_fill(char **grid, t_map *map, int x, int y);
 int				check_space_flow(t_game *game);
-int				player_position(t_game *game, int *x, int *y);
-int				check_flood(char **grid, int rows, int cols);
+int				has_xpm_ext(char *path);
 
 /***********************************/
 /*************CLEANUP***************/
 /***********************************/
-void			error_exit(char *msg);
+void			error_exit(t_game *game, char *msg);
 void			cleanup(t_game *game);
 int				render_frame(t_game *game);
+int				ensure_capacity(t_game *g, int *capacity, int i);
 void			init_game(t_game *game);
 
 /***********************************/
@@ -191,7 +183,6 @@ void			raycaster(t_game *game);
 void			ft_pixel_put(t_game *game, int x, int y, int color);
 int				get_tex_color(t_tex *tex, int x, int y);
 void			load_single_texture(t_game *game, t_tex *tex, char *path);
-void			mock_load_textures(t_game *game);
 void			load_textures(t_game *game);
 /***********************************/
 /*************PLAYER***************/
